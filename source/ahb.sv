@@ -13,7 +13,7 @@ module ahb (
   input wire HSEL,
   input wire [31:0] HADDR,
   input wire BUSYn,
-  input wire HRDATA_R,
+  input wire [31:0] HRDATA_R,
   input wire HWRITE,
   output wire ENABLE,
   output wire [11:0] MEM_ADDR,
@@ -25,7 +25,6 @@ module ahb (
 wire i_enable;
 assign ENABLE = i_enable;
 
-    
 assign i_enable = HREADYIN & HSEL;
 assign MEM_ADDR[11:0] = HADDR[11:0];
 assign HREADYOUT = BUSYn;
@@ -33,5 +32,6 @@ assign HREADYOUT = BUSYn;
 assign W_EN = HWRITE & i_enable;
 assign R_EN = (~HWRITE) & i_enable;
 
+assign HRDATA = HRDATA_R;
 
 endmodule
