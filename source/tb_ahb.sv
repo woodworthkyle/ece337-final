@@ -70,9 +70,17 @@ module tb_ahb
     
     @(posedge tb_clk);
     assert (tb_mem_addr == 12'b111111111111)
-      $info("Address Decoder PASSED");
+      $info("Address Decoder 1 PASSED");
     else 
-      $error("Address Decoder FAILED");
+      $error("Address Decoder 1 FAILED");
+
+    @(posedge tb_clk)
+    tb_haddr = 12'b110100111010;
+    @(posedge tb_clk);
+    assert (tb_mem_addr == 12'b110100111010)
+      $info("Address Decoder 2 PASSED");
+    else 
+      $error("Address Decoder 2 FAILED");
       
     @(posedge tb_clk);
     tb_busyn = 1;
