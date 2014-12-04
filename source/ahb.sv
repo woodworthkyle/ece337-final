@@ -16,6 +16,7 @@ module ahb (
   input wire [31:0] HRDATA_R, //data
   input wire HWRITE,          //write enable
   output wire ENABLE,         //enable signal
+  output wire MEM_BA,         //bank address for SDRAM
   output wire [11:0] MEM_ADDR,//address for SDRAM
   output wire HREADYOUT,      //indicates the previous transfer is complete
   output wire [31:0] HRDATA,  //data
@@ -26,6 +27,7 @@ wire i_enable;
 assign ENABLE = i_enable;
 
 assign i_enable = HREADYIN & HSEL;
+assign MEM_BA = HADDR[13:12];
 assign MEM_ADDR[11:0] = HADDR[11:0];
 assign HREADYOUT = BUSYn;
 

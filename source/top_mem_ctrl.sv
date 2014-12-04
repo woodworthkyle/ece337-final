@@ -22,6 +22,7 @@ module top_mem_ctrl
     input wire HSEL,
     output wire [31:0] HRDATA,
     output wire HRESP,
+    output wire HREADYOUT,
     
     // SDRAM Interface signals
     input MEM_RDATA[31:0],
@@ -34,69 +35,107 @@ module top_mem_ctrl
     output MEM_WEn
     
   );
+
+  // Signal telling the memor controller to enable
+  wire MEM_CTRL_ENABLE;
+  // Signal telling the memory controller to enter write mode
+  wire MEM_CTRL_W_EN;
+  // Signal telling the memory controller to enter read mode
+  wire MEM_CTRL_R_EN;
+  // Signal telling the AHB-Lite interface that we are busy
+  wire MEM_CTRL_BUSYn;
+  // Address signal for memory controller to use
+  wire [11:0] MEM_CTRL_ADDR;
+  // Signal telling the memory controller to refresh the SDRAM
+  wire MEM_CTRL_REFRESH;
   
+  // Cache signals
+  wire c_addr_en;
+  wire c_addr_in;
+  wire c_data_in;
+  wire c_w_en;
+  wire c_w_ptr;
+  wire c_r_en;
+  wire c_r_ptr;
+  wire c_addr_out;
+  wire [31:0] c_data_out;
+  
+  
+  // AHB-Lite Slave interface
   ahb AHB_SLAVE
   (
-    .HREADYIN()
-    .HSEL(),
-    .HADDR(),
-    .BUSYn(),
-    .HRDATA_R(),
-    .HWRITE(),
-    .ENABLE(),
-    .MEM_ADDR(),
-    .HREADYOUT(),
-    .HRDATA(),
-    .W_EN(),
-    .R_EN()
+    .HREADYIN(HREADYIN),
+    .HSEL(HSEL),
+    .HADDR(HADDR),
+    .BUSYn(MEM_CTRL_BUSYn),
+    .HRDATA_R(c_data_out),
+    .HWRITE(HWRITE),
+    .ENABLE(MEM_CTRL_ENABLE),
+    .MEM_ADDR(MEM_CTRL_ADDR),
+    .HREADYOUT(HREADYOUT),
+    .HRDATA(HRDATA),
+    .W_EN(MEM_CTRL_W_EN),
+    .R_EN(MEM_CTRL_R_EN)
   );
-  
+
+  // Cache block
   cache CACHE
   (
-    .clk(),
-    .n_rst(),
-    .addr_enable(),
-    .addr_in(),
-    .data_in(),
-    .write_enable(),
-    .write_pointer(),
-    .read_enable(),
-    .read_pointer(),
-    .addr_out(),
-    .data_out() 
+    .clk(HCLK),
+    .n_rst(HRSTn),
+    .addr_enable(c_addr_en),
+    .addr_in(c_addr_in),
+    .data_in(c_data_in),
+    .write_enable(c_w_en),
+    .write_pointer(c_w_ptr),
+    .read_enable(c_r_en),
+    .read_pointer(c_r_ptr),
+    .addr_out(c_addr_out),
+    .data_out(c_data_out) 
   );
   
-  
-  flex_counter TIMER
+  // Initialization and refresh counter
+  // Initialization needs a 100 us power up time. 100 us at 20 ns clock rate
+  // would take 5000 cycles. However, the CKE signal and a NOP command need 
+  // to be sent to the SDRAM sometime before the end of the 100 us. Cutting
+  // the 5000 cyles down to 2500 cycles allows us to wait 50 us assert CKE 
+  // and the NOP command, then wait 50 us for a proper power up. The refresh
+  // process needs to be executed either every 64 ms (full refresh) or 15.625 us
+  // (single refresh). Obviously 64 ms requires a massive counter, and 15.625 us 
+  // will take less cycles that 100 us used for initialization.
+  // Summary:
+  // We need at least a 12 bit counter
+  flex_counter INIT_REFRESH_TIMER
   (
     
-  );
-  
+  ); 
+
+   
+   
+  // The memory controller
   memcontrol MEM_CONTROLLER
   (
-    .hclk(),
-    .nrst(),
-    .mem_addr(),
-    .enable(),
-    .w_en(),
-    .r_en(),
-    .c_addr_o(),
-    .refresh(),
-    .c_addr_en(),
-    .c_addr_i(),
-    .c_w_en(),
-    .c_w_addr(),
-    .c_r_en(),
-    .c_r_addr(),
-    .BUSYn(),
-    .mem_addr(),
-    .mem_cke(),
-    .mem_CSn(),
-    .mem_RASn(),
-    .mem_CASn(),
-    .mem_WEn(),
-    .hclk(),
-    .tim_RSTn()
+    .hclk(HCLK),
+    .nrst(HRSTn),
+    .mem_addr(MEM_CTRL_ADDR),
+    .enable(MEM_CTRL_ENABLE),
+    .w_en(MEM_CTRL_W_EN),
+    .r_en(MEM_CTRL_R_EN),
+    .c_addr_o(c_addr_out),
+    .refresh(MEM_CTRL_REFRESH),
+    .c_addr_en(c_addr_en),
+    .c_addr_i(c_addr_in),
+    .c_w_en(c_w_en),
+    .c_w_addr(c_w_ptr),
+    .c_r_en(c_r_en),
+    .c_r_addr(c_r_ptrs),
+    .BUSYn(MEM_CTRL_BUSYn),
+    .mem_addr_o(MEM_ADDR),
+    .mem_cke(MEM_CKE),
+    .mem_CSn(MEM_CSn),
+    .mem_RASn(MEM_RASn),
+    .mem_CASn(MEM_CASn),
+    .mem_WEn(MEM_WEn)
   );
   
   
