@@ -21,12 +21,14 @@ module sdram
     input RASn,
     input CASn,
     input WEn,
+    input write,
     input [3:0] DQM,
     output [DATA_BITS - 1:0] DQo
   );
   
   wire [DATA_BITS - 1:0] DQ;
-  assign DQ = (WEn == 1'b0)?(DQi):(DQo);
+  assign DQ = (write == 1'b1)?(DQi):(DQ);
+  assign DQo = (write == 1'b0)?(DQ):(32'bz);
   
   mt48lc4m32b2 SDRAM_MICRON
   (

@@ -36,7 +36,7 @@
 *
 ****************************************************************************************/
 
-`timescale 1ns / 100ps
+`timescale 1ns / 10ps
 
 module mt48lc4m32b2 (Dq, Addr, Ba, Clk, Cke, Cs_n, Ras_n, Cas_n, We_n, Dqm);
 
@@ -135,9 +135,9 @@ module mt48lc4m32b2 (Dq, Addr, Ba, Clk, Cke, Cs_n, Ras_n, Cas_n, We_n, Dqm);
     `define   BST       8
     `define   LMR       9
 
-    // Timing Parameters for -6 and CAS Latency = 2
-    parameter tAC  =   7.5;
-    parameter tHZ  =   7.5;
+    // Timing Parameters for -6 and CAS Latency = 1
+    parameter tAC  =   17.0;
+    parameter tHZ  =   17.0;
     parameter tOH  =   2.0;
     parameter tMRD =   2.0;     // 2 Clk Cycles
     parameter tRAS =  42.0;
@@ -308,7 +308,8 @@ module mt48lc4m32b2 (Dq, Addr, Ba, Clk, Cke, Cs_n, Ras_n, Cas_n, We_n, Dqm);
             if (Debug) $display ("at time %t AREF : Auto Refresh", $time);
             // Auto Refresh to Auto Refresh
             if ($time - RC_chk < tRC) begin
-                $display ("at time %t ERROR: tRC violation during Auto Refresh", $time);
+                $display ("
+                %t ERROR: tRC violation during Auto Refresh", $time);
             end
             // Precharge to Auto Refresh
             if ($time - RP_chk0 < tRP || $time - RP_chk1 < tRP || $time - RP_chk2 < tRP || $time - RP_chk3 < tRP) begin
@@ -974,14 +975,14 @@ module mt48lc4m32b2 (Dq, Addr, Ba, Clk, Cke, Cs_n, Ras_n, Cas_n, We_n, Dqm);
         end
     endtask
 
-    // Timing Parameters for -6 and CAS Latency = 2
+    // Timing Parameters for -6 and CAS Latency = 1
     specify
         specparam
             tAH  =  1.00,                                       // Addr, Ba Hold Time
             tAS  =  1.50,                                       // Addr, Ba Setup Time
             tCH  =  2.50,                                       // Clock High-Level Width
             tCL  =  2.50,                                       // Clock Low-Level Width
-            tCK  = 10.00,                                       // Clock Cycle Time
+            tCK  = 20.00,                                       // Clock Cycle Time
             tDH  =  1.00,                                       // Data-in Hold Time
             tDS  =  1.50,                                       // Data-in Setup Time
             tCKH =  1.00,                                       // CKE Hold  Time
