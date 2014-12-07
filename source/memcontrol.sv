@@ -87,7 +87,7 @@ module memcontrol
   /*-----------------------------------NEXT STATE LOGIC------------------------------------*/
   always_ff @ (posedge hclk, negedge nrst) begin
     if (nrst == 1'b0) begin
-      state <= INIT_WAIT1;
+      state <= INIT_WAIT0;
     end
     else begin
     state <= nextState;
@@ -108,7 +108,7 @@ module memcontrol
       
       INIT_WAIT1:
       begin
-        nextState <= INIT_WAIT3;
+        nextState <= INIT_WAIT2;
       end
       
       INIT_WAIT2:

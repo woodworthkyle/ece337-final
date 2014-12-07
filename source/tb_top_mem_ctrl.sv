@@ -160,7 +160,7 @@ module tb_top_mem_ctrl();
     tb_HTRANS = 2'b00;
     tb_HWDATA = 32'h00000000;
     tb_HWRITE = 1'b0;
-    tb_HREADYIN = 1'b0;
+    tb_HREADYIN = 1'b1;
     tb_HSEL = 1'b1;
     
     // POR
@@ -172,11 +172,15 @@ module tb_top_mem_ctrl();
     @(negedge tb_HCLK);
     tb_stage = INIT_SDRAM;
     tb_HRESETn = 1'b1;
+    waitCycles(2501);
+    waitCycles(1);
+    waitCycles(2501);
+    waitCycles(15);
     
     // Write sequential 20 words
     @(negedge tb_HCLK);
     tb_stage = WRITE;
-    
+    writeSimple();
     
     // Read 5 words in middle of write (10-15)
     // - First read should be miss
@@ -194,5 +198,42 @@ module tb_top_mem_ctrl();
     tb_stage = REFRESH;
     
   end
+  
+  // Tasks and functions
+	task waitCycles(int unsigned x);
+	  for(int i = 0; i < x; i++)
+	    @(posedge tb_HCLK);
+  endtask: waitCycles
+  
+  task writeSimple();
+    for (int lcv = 0; lcv < 20; lcv++) begin
+      while(!tb_HREADYOUT) begin
+        waitCycles(1);
+      end
+      //@(posedge tb_HREADYOUT);
+      // Send data
+      tb_HADDR = lcv;
+      // Send address
+      tb_HWDATA = lcv;
+      // Enable write
+      tb_HWRITE = 1'b1;
+      // 
+      tb_HREADYIN = 1'b1;
+      tb_HSEL = 1'b1;
+      waitCycles(1);
+    end
+    
+    /*
+    // wait for bus to be ready
+    @(posedge tb_HREADYOUT);
+    // Send data
+    tb_HADDR = addr;
+    // Send address
+    tb_HWDATA = data;
+    // Enable write
+    tb_HWRITE = 1'b1;
+	  */
+  endtask
+  
   
 endmodule
