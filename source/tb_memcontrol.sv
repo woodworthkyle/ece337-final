@@ -97,12 +97,12 @@ module tb_memcontrol();
   
   // Rollover timer simulation
   // Rollover flag for INIT_WAIT1 state
-  #(60);
+  #(50000);
   tb_rollover_flag = 1'b1;
   #(20);
   tb_rollover_flag = 1'b0;
   // Rollover flag for INIT_WAIT2 state
-  #(40);
+  #(50000);
   tb_rollover_flag = 1'b1;
   #(20);
   tb_rollover_flag = 1'b0;
