@@ -402,9 +402,8 @@ module tb_sdram();
     rwPrep(ba, start_addr);
     readSDRAM();
     sendOpCodeImmediate(NOP);
-    for (int i = 0; i < size - 1; i++) begin
-      setADDR(start_addr + i[11:0], 1);
-    end
+    waitCycles(size-1);
+    # tAH;
     rwEnd();
     
   endtask
