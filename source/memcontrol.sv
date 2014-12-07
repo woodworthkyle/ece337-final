@@ -40,6 +40,7 @@ module memcontrol
   // STATE DELCARTIONS
   typedef enum logic [5:0] {
     // STATES
+    INIT_WAIT0,         // After power on, wait 100 us
     INIT_WAIT1,         // After power on, wait 100 us
     INIT_PRE_C,         // Precharge all cells in SDRAM
     INIT_WAIT2,         // Wait for precharge cycle
@@ -100,9 +101,14 @@ module memcontrol
     
     // Case statements
     case (state)
+      INIT_WAIT0:
+      begin
+        nextState <= ((rollover_flag == 1'b1)? INIT_WAIT1 : INIT_WAIT0);
+      end
+      
       INIT_WAIT1:
       begin
-        nextState <= ((rollover_flag == 1'b1)? INIT_WAIT2 : INIT_WAIT1);
+        nextState <= INIT_WAIT3;
       end
       
       INIT_WAIT2:
@@ -317,7 +323,7 @@ module memcontrol
     
     // Case statements
     case (state)
-      INIT_WAIT1:
+      INIT_WAIT0:
       begin
         mem_addr = 12'b000000000000;
         mem_cke = 1'b0;
@@ -327,10 +333,10 @@ module memcontrol
         mem_WEn = 1'b1;
         tim_clear = 1'b0;
         tim_EN = 1'b1;
-        tim_ro_value = 3;
+        tim_ro_value = 2500;
       end
       
-      INIT_WAIT2:
+      INIT_WAIT1:
       begin
         mem_addr = 12'b000000000000;
         mem_cke = 1'b1;
@@ -338,9 +344,21 @@ module memcontrol
         mem_RASn = 1'b1;
         mem_CASn = 1'b1;
         mem_WEn = 1'b1;
+        tim_clear = 1'b1;
+        tim_EN = 1'b0;
+        tim_ro_value = 2500;  
+      end
+      
+      INIT_WAIT2:
+      begin
+        mem_addr = 12'b000000000000;
+        mem_CSn = 1'b0;
+        mem_RASn = 1'b1;
+        mem_CASn = 1'b1;
+        mem_WEn = 1'b1;
         tim_EN = 1'b1;
         tim_clear = 1'b0;
-        tim_ro_value = 3;    
+        tim_ro_value = 2500;    
       end
       
       INIT_PRE_C:
