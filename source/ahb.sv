@@ -7,7 +7,7 @@
 // Description: AHB-Lite interface
 
 module ahb (
-  input wire H_CLK,           //Clock
+  input wire HCLK,           //Clock
   input wire HRESETn,         //nReset
   input wire HREADYIN,        //indicates the previous transfer is complete
   input wire HSEL,            //select the slave
@@ -16,7 +16,7 @@ module ahb (
   input wire [31:0] HRDATA_R, //data
   input wire HWRITE,          //write enable
   output wire ENABLE,         //enable signal
-  output wire MEM_BA,         //bank address for SDRAM
+  output wire [1:0] MEM_BA,         //bank address for SDRAM
   output wire [11:0] MEM_ADDR,//address for SDRAM
   output wire HREADYOUT,      //indicates the previous transfer is complete
   output wire [31:0] HRDATA,  //data

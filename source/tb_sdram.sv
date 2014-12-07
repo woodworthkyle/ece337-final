@@ -81,7 +81,7 @@ module tb_sdram();
   OpCode tb_opcode;
   TestStages tb_stage;
   
-  //Clock generations
+  // Clock generations
 	always begin : CLK_GEN
 		tb_clk = 1'b0;
 		#(CLK_PERIOD / 2);
@@ -144,12 +144,12 @@ module tb_sdram();
 	  tb_rstn = 1'b1;
 	  
 	  // Wait 100 us while asserting CKE and sending NOP/COMMAND INHIBIT
-	  waitCycles(50);
+	  waitCycles(2500);
 	  # tCKS;
 	  tb_cke = 1'b1;
 	  # tCKH;
 	  sendOpCode(NOP);
-	  waitCycles(50);
+	  waitCycles(2500);
 	  
 	  // Send PRECHARGE ALL op code
 	  # tCMH;
