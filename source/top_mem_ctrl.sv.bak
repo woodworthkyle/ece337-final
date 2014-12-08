@@ -103,7 +103,7 @@ module top_mem_ctrl
     .n_rst(HRESETn),
     .addr_enable(c_addr_en),
     .addr_in(c_addr_in),
-    .data_in(MEM_RDATA),
+    .data_in(c_data_in),
     .write_enable(c_w_en),
     .write_pointer(c_w_ptr),
     .read_enable(c_r_en),

@@ -271,7 +271,7 @@ module tb_top_mem_ctrl();
       waitCycles(1);
       #(5);
       tb_r_sampAddr[lcv] = tb_MEM_ADDR;
-      tb_r_sampData[lcv] = tb_HRDATA; 
+      tb_r_sampData[lcv] = tb_MEM_RDATA; 
       assert (tb_r_sampData[lcv] == tb_r_goldData[lcv]) $display ("READ Test sample data %d, successful", lcv);
         else $error("READ Test sample data %d, unsucessful %d != %d", lcv, tb_r_sampData[lcv], tb_r_goldData[lcv]);    
     end

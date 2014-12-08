@@ -37,6 +37,6 @@ assign W_EN = HWRITE & i_enable;
 assign R_EN = (~HWRITE) & i_enable;
 
 assign HRDATA = HRDATA_R;
-assign MEM_WDATA = HWDATA;
+assign HWDATA = 
 
 endmodule

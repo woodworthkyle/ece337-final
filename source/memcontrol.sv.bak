@@ -577,7 +577,6 @@ module memcontrol
       
       R_WAIT1:
       begin
-        mem_addr = target_addr;
         c_w_en = 1'b1;
         c_w_addr = 3'b000;
         c_addr_i = target_addr;
