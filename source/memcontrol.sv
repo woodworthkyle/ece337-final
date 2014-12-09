@@ -482,8 +482,15 @@ module memcontrol
           mem_CASn = 1'b0;
           mem_WEn = 1'b1;
           end
-        else begin
+        else if (((w_en == 1'b1) | (r_en == 1'b1)) & (enable == 1'b1)) begin
           next_BUSYn = 1'b0;
+          mem_CSn = 1'b0;
+          mem_RASn = 1'b1;
+          mem_CASn = 1'b1;
+          mem_WEn = 1'b1;
+        end
+        else begin
+          next_BUSYn = 1'b1;
           mem_CSn = 1'b0;
           mem_RASn = 1'b1;
           mem_CASn = 1'b1;
