@@ -258,10 +258,10 @@ module tb_top_mem_ctrl();
     tb_MEM_RDATA = 32'h00000000;
     tb_HRESETn = 1'b0;
     tb_HADDR = 32'h00000000;
-    tb_HBURST = 3'b000;
-    tb_HPROT = 4'b0000;
-    tb_HSIZE = 3'b000;
-    tb_HTRANS = 2'b00;
+    tb_HBURST = 3'b000; // 000 = Single burst
+    tb_HPROT = 4'b1001; // Cacheable, non-bufferable, user access, data access
+    tb_HSIZE = 3'b010; // Single word
+    tb_HTRANS = 2'b11; // Sequential transfers
     tb_HWDATA = 32'h00000000;
     tb_HWRITE = 1'b0;
     tb_HREADYIN = 1'b1;
