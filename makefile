@@ -16,7 +16,8 @@ include /home/ecegrid/a/ece337/Course_Prod/course_make_vars
 # (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 # AND THE AUTOMATED GRADING SYSTEM
-COMPONENT_FILES	:= ahb.sv cache.sv flex_counter.sv memcontrol.sv mt48lc4m32b2.sv sdram.sv
+COMPONENT_FILES	:= ahb.sv cache.sv flex_counter.sv memcontrol.sv 
+#mt48lc4m32b2.sv sdram.sv
 
 # Specify the name of the top level file (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
@@ -249,11 +250,11 @@ sim_full_mapped: $(addprefix $(M_WORK_LIB)/, $(basename $(TOP_LEVEL_FILE) $(TEST
 
 # Uncomment below if you want run the simulation the normal way and have it
 # run the specified .do file
-#	@$(SIMULATE) -t ps -do scripts/s_waves.do $(M_WORK_LIB).$(TB_MODULE)
+	@$(SIMULATE) -t ps -do scripts/s_waves.do $(M_WORK_LIB).$(TB_MODULE)
 
 # This way just runs it like normal and only sets up the simulation but doesn't
 # run it or add any waveforms
-	@$(SIMULATE) -i -t ps $(M_WORK_LIB).$(TB_MODULE)
+#	@$(SIMULATE) -i -t ps $(M_WORK_LIB).$(TB_MODULE)
 	@cp -f transcript $(basename $(TOP_LEVEL_FILE)).mtran
 	@echo -e "Done simulating the mapped design\n\n"
 
@@ -283,8 +284,8 @@ tbsim_%_mapped: $(M_WORK_LIB)/% $(M_WORK_LIB)/tb_%
 
 # Set the default value of the clock name and clock period to an empty string so that clock timing will
 # only be activated in the SYN_CMDS definition if they were overwritten at invocation
-CLOCK_NAME 		:=
-CLOCK_PERIOD	:=
+CLOCK_NAME 		:= HCLK
+CLOCK_PERIOD	:= 20ns
 
 # Set the default value of the source files for sub modules to be an empty string so that
 # it will only be used if overwritten at invocation
@@ -309,7 +310,7 @@ MOD_NAME := $(basename $(MAIN_FILE))
 mapped/$(TOP_MODULE).v: SHELL := /usr/local/bin/tcsh
 mapped/$(TOP_MODULE).v: source/$(TOP_LEVEL_FILE) $(addprefix source/,$(COMPONENT_FILES))
 	@echo "Synthesizing design: $@\n"
-	@$(MAKE) --no-print-directory syn_mapped MAIN_FILE='$(TOP_LEVEL_FILE)' DEP_SUB_FILES='$(COMPONENT_FILES)' CLOCK_NAME='clk' CLOCK_PERIOD='2' > $(TOP_MODULE).log
+	@$(MAKE) --no-print-directory syn_mapped MAIN_FILE='$(TOP_LEVEL_FILE)' DEP_SUB_FILES='$(COMPONENT_FILES)' CLOCK_NAME='HCLK' CLOCK_PERIOD='10' > $(TOP_MODULE).log
 	@echo "Synthesis run attempt for $@ complete"
 	@echo "Checking synthesis attempt for errors"
 	@syschk -w $(TOP_MODULE)

@@ -82,15 +82,18 @@ module memcontrol
   state_type state;
   state_type nextState;
   reg [2:0] offset = 3'b000;
+  reg next_BUSYn;
   
   /*---------------------------------------PROCESSES---------------------------------------*/
   /*-----------------------------------NEXT STATE LOGIC------------------------------------*/
   always_ff @ (posedge hclk, negedge nrst) begin
     if (nrst == 1'b0) begin
       state <= INIT_WAIT0;
+      BUSYn <= 1'b0;
     end
     else begin
     state <= nextState;
+    BUSYn <= next_BUSYn;
     end
   end
 
@@ -298,7 +301,10 @@ module memcontrol
       begin
         nextState <= ACTIVE_IDLE;
       end
-      
+      default:
+      begin
+        nextState <= state;
+      end
                 
     endcase 
   end // Next state end
@@ -308,7 +314,8 @@ module memcontrol
     // Defaults
     mem_ba = target_ba;           // Always relayed through - controlled by AHB
     mem_cke = 1'b1;               // Always high except during start of INIT
-    BUSYn = 1'b0;                 // Always busy except when in active idle
+    //BUSYn = 1'b0;                 // Always busy except when in active idle
+    next_BUSYn = 1'b0;
     c_addr_en = 1'b0;             // Reset all cache values to default values
     c_addr_i = 12'b000000000000;   
     c_w_en = 1'b0;                
@@ -321,6 +328,12 @@ module memcontrol
     mem_CASn = 1'b1;
     mem_WEn = 1'b1;
     
+    //
+    offset = 0;
+    tim_EN = 1'b0;
+    tim_clear = 1'b1;
+    tim_ro_value = '0;
+        
     // Case statements
     case (state)
       INIT_WAIT0:
@@ -455,18 +468,20 @@ module memcontrol
       
       ACTIVE_IDLE:
       begin
-        BUSYn = 1'b1;
+        next_BUSYn = 1'b1;
         tim_clear = 1'b0;
         tim_EN = 1'b1;
         tim_ro_value = 750;
         
         if (rollover_flag == 1'b1) begin
+          next_BUSYn = 1'b0;
           mem_CSn = 1'b0;
           mem_RASn = 1'b0;
           mem_CASn = 1'b0;
           mem_WEn = 1'b1;
           end
         else begin
+          next_BUSYn = 1'b0;
           mem_CSn = 1'b0;
           mem_RASn = 1'b1;
           mem_CASn = 1'b1;
@@ -533,26 +548,33 @@ module memcontrol
         mem_CASn = 1'b1;
         mem_WEn = 1'b1;
         
-        if (mem_addr == c_addr_o)
+        if (mem_addr == c_addr_o) begin
           offset = 0;
-        else if (target_addr == (c_addr_o + 1))
+        end else if (target_addr == (c_addr_o + 1)) begin
           offset = 1;
-        else if (target_addr == (c_addr_o + 2))
+        end else if (target_addr == (c_addr_o + 2)) begin
           offset = 2;
-        else if (target_addr == (c_addr_o + 3))
+        end else if (target_addr == (c_addr_o + 3)) begin
           offset = 3;
-        else if (target_addr == (c_addr_o + 4))
+        end else if (target_addr == (c_addr_o + 4)) begin
           offset = 4;
-        else if (target_addr == (c_addr_o + 5))
+        end else if (target_addr == (c_addr_o + 5)) begin
           offset = 5;
-        else if (target_addr == (c_addr_o + 6))
+        end else if (target_addr == (c_addr_o + 6)) begin
           offset = 6;
-        else if (target_addr == (c_addr_o + 7))
+        end else if (target_addr == (c_addr_o + 7)) begin
           offset = 7;
+        end
+        
+        if(nextState == R_RELAY_DATA) begin
+          next_BUSYn = 1'b1;
+        end
       end
       
       R_RELAY_DATA:
       begin
+        // Added BUSYn to be asserted to let the bus know we have data on the line
+        next_BUSYn = 1'b1;
         c_r_en = 1'b1;
         c_r_addr = offset;
       end
@@ -563,7 +585,7 @@ module memcontrol
         mem_CSn = 1'b0;
         mem_RASn = 1'b0;
         mem_CASn = 1'b1;
-        mem_WEn = 1'b0;
+        mem_WEn = 1'b1;
       end
       
       R_SET_CMD:
@@ -662,6 +684,7 @@ module memcontrol
       
       R_PRE_C:
       begin
+        next_BUSYn = 1'b1;
         mem_CSn = 1'b0;
         mem_RASn = 1'b0;
         mem_CASn = 1'b1;
@@ -674,7 +697,7 @@ module memcontrol
         mem_CSn = 1'b0;
         mem_RASn = 1'b0;
         mem_CASn = 1'b1;
-        mem_WEn = 1'b0;
+        mem_WEn = 1'b1;
       end
       
       W_SET_CMD:
@@ -688,6 +711,7 @@ module memcontrol
       
       W_WAIT:
       begin
+        next_BUSYn = 1'b1;
         mem_CSn = 1'b0;
         mem_RASn = 1'b1;
         mem_CASn = 1'b1;
@@ -696,6 +720,7 @@ module memcontrol
       
       W_PRE_C:
       begin
+        next_BUSYn = 1'b1;
         mem_CSn = 1'b0;
         mem_RASn = 1'b0;
         mem_CASn = 1'b1;
