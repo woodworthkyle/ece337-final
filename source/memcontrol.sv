@@ -32,6 +32,7 @@ module memcontrol
   output reg mem_RASn,                // Row address stobe
   output reg mem_CASn,                // Coloumn address strobe
   output reg mem_WEn,                 // Write enable
+  output reg [3:0] mem_DQM,                 // Memory output/input enable
   output reg tim_clear,               // Time clear
   output reg tim_EN,                  // Timer enable
   output reg [11:0] tim_ro_value      // Timer rollover value      
@@ -327,6 +328,7 @@ module memcontrol
     mem_RASn = 1'b1;
     mem_CASn = 1'b1;
     mem_WEn = 1'b1;
+    mem_DQM = 4'b1111;
     
     //
     offset = 0;

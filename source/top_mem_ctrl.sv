@@ -39,6 +39,9 @@ module top_mem_ctrl
     //output MEM_WRITE
     
   );
+  
+  // Forward HCLK to SDRAM CLK
+  assign MEM_CLK = HCLK;
 
   // Signal telling the memor controller to enable
   wire MEM_CTRL_ENABLE;
@@ -90,6 +93,7 @@ module top_mem_ctrl
     .MEM_BA(MEM_CTRL_BA),
     .MEM_ADDR(MEM_CTRL_ADDR),
     .HREADYOUT(HREADYOUT),
+    .HRESP(HRESP),
     .HRDATA(HRDATA),
     .MEM_WDATA(MEM_WDATA),
     .W_EN(MEM_CTRL_W_EN),
@@ -162,7 +166,7 @@ module top_mem_ctrl
     .mem_RASn(MEM_RASn),
     .mem_CASn(MEM_CASn),
     .mem_WEn(MEM_WEn),
-    //.mem_DQM(),
+    .mem_DQM(MEM_DQM),
     //.mem_write(),
     .tim_clear(tim_clear),
     .tim_EN(tim_EN),

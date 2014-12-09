@@ -20,6 +20,7 @@ module ahb (
   output wire [1:0] MEM_BA,         //bank address for SDRAM
   output wire [11:0] MEM_ADDR,//address for SDRAM
   output wire HREADYOUT,      //indicates the previous transfer is complete
+  output wire HRESP,          // Error signal that is tied to low
   output wire [31:0] HRDATA,  // DAta to read from cache
   output wire [31:0] MEM_WDATA,// Data to write directly to SDRAM
   output wire W_EN,           //write enable signal
@@ -32,6 +33,7 @@ assign i_enable = HREADYIN & HSEL;
 assign MEM_BA = HADDR[13:12];
 assign MEM_ADDR[11:0] = HADDR[11:0];
 assign HREADYOUT = BUSYn;
+assign HRESP = 1'b0;
 
 assign W_EN = HWRITE & i_enable;
 assign R_EN = (~HWRITE) & i_enable;

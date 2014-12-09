@@ -255,6 +255,7 @@ module tb_top_mem_ctrl();
     tb_stage = STAGE_INIT_VARIABLES;
     tb_refresh = 1'b0;
     tb_MEM_WRITE = 1'b1;
+    tb_MEM_RDATA = 32'h00000000;
     tb_HRESETn = 1'b0;
     tb_HADDR = 32'h00000000;
     tb_HBURST = 3'b000;
@@ -463,16 +464,23 @@ module tb_top_mem_ctrl();
       $error("Unsuccessful read sequence at READ");
       
     // Make data available
-    tb_MEM_RDATA = data;
-    
+    tb_MEM_RDATA = tb_goldData[addr];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+1];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+2];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+3];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+4];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+5];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+6];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+7];
     @(negedge tb_HCLK);
+    tb_MEM_RDATA = tb_goldData[addr+8];
     
     // Check PRECHARGE command
     @(negedge tb_HCLK);
