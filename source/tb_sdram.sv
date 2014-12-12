@@ -62,7 +62,8 @@ module tb_sdram();
     WRITE_RAND_GT8,
     READ_RAND_GT8,
     
-    REFRESH
+    REFRESH,
+    STAGE_DONE
   } TestStages;
   
   // ENUM for SDRAM op codes
@@ -219,6 +220,10 @@ module tb_sdram();
 	  tb_stage = READ_SEQ_LTE8;
 	  readSeqLTE8(5, 2'b00, 12'h001);
 	  
+	  @(negedge tb_clk);
+	  tb_stage = STAGE_DONE;
+	  
+	  /*
 	  //
 	  // Sequential write > 8 words
 	  //
@@ -254,7 +259,7 @@ module tb_sdram();
 	  //
 	  @(negedge tb_clk);
 	  tb_stage = READ_RAND_GT8;
-	  
+	  */
 	  
 	end
 	

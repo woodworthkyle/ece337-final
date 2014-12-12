@@ -27,7 +27,7 @@ module sdram
   );
   
   wire [DATA_BITS - 1:0] DQ;
-  assign DQ = (write == 1'b1)?(DQi):(DQ);
+  assign DQ = (write == 1'b1)?(DQi):(32'bz);
   assign DQo = (write == 1'b0)?(DQ):(32'bz);
   
   mt48lc4m32b2 SDRAM_MICRON

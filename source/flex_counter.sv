@@ -7,7 +7,7 @@
 // Description: Designing a flexiable and scalable counter with controlled rollover
 
 module flex_counter
-#( parameter NUM_CNT_BITS = 4
+#( parameter NUM_CNT_BITS = 12
 )
 (
   input wire clk, n_rst, clear, count_enable,

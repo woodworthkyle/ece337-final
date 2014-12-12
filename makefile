@@ -16,13 +16,12 @@ include /home/ecegrid/a/ece337/Course_Prod/course_make_vars
 # (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 # AND THE AUTOMATED GRADING SYSTEM
-COMPONENT_FILES	:= ahb.sv cache.sv flex_counter.sv memcontrol.sv 
-#mt48lc4m32b2.sv sdram.sv
+COMPONENT_FILES	:= ahb.sv cache.sv flex_counter.sv memcontrol.sv mt48lc4m32b2.sv sdram.sv
 
 # Specify the name of the top level file (do not include the source folder in the name)
 # NOTE: YOU WILL NEED TO SET THIS VARIABLE'S VALUE WHEN WORKING WITH HEIRARCHICAL DESIGNS
 # AND THE AUTOMATED GRADING SYSTEM
-TOP_LEVEL_FILE	:= ahb.sv
+TOP_LEVEL_FILE	:= sdram.sv
 
 # Specify the filepath of the test bench you want to use (ie. tb_top_level.sv)
 # (do not include the source folder in the name)
@@ -284,8 +283,8 @@ tbsim_%_mapped: $(M_WORK_LIB)/% $(M_WORK_LIB)/tb_%
 
 # Set the default value of the clock name and clock period to an empty string so that clock timing will
 # only be activated in the SYN_CMDS definition if they were overwritten at invocation
-CLOCK_NAME 		:= HCLK
-CLOCK_PERIOD	:= 20ns
+CLOCK_NAME 		:= hclk 
+CLOCK_PERIOD	:= 10
 
 # Set the default value of the source files for sub modules to be an empty string so that
 # it will only be used if overwritten at invocation
