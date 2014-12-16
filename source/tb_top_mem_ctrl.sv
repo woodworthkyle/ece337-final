@@ -334,9 +334,9 @@ module tb_top_mem_ctrl();
     stopClkCounter();
     
     // Write file to SDRAM byte by byte
-    while(!$feof(in_file)) begin
-      $display($fgetc(in_file));
-    end
+    //while(!$feof(in_file)) begin
+    //  $display($fgetc(in_file));
+    //end
     
     
     // Read file from SDRAM byte by byte

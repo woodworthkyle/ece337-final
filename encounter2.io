@@ -1,200 +1,200 @@
-Pad: U1 N PADNC
-Pad: U2 N PADNC
-Pad: U3 N PADNC
-Pad: U4 N PADNC
-Pad: U5 N PADNC
-Pad: U6 N PADNC
-Pad: U7 N PADNC
-Pad: U8 N PADNC
-Pad: U9 N PADNC
-Pad: U10 N PADNC
-Pad: U11 N PADNC
-Pad: U12 N PADNC
-Pad: U13 N PADNC
-Pad: U14 N PADNC
-Pad: U15 N PADNC
-Pad: U16 N PADNC
-Pad: U17 N PADNC
-Pad: U18 N PADNC
-Pad: U19 N PADNC
-Pad: U20 N PADNC
-Pad: U21 N PADNC
-Pad: U22 N PADNC
-Pad: U23 N PADNC
-Pad: U24 N PADNC
-Pad: U25 N PADNC
-Pad: U26 N PADNC
-Pad: U27 N PADNC
-Pad: U28 N PADNC
-Pad: U29 N PADNC
-Pad: U30 N PADNC
-Pad: U31 N PADNC
-Pad: U32 N PADNC
-Pad: U33 N PADNC
-Pad: U34 N PADNC
-Pad: U35 N PADNC
-Pad: U36 N PADNC
-Pad: U37 N PADNC
-Pad: U38 N PADNC
-Pad: U39 N PADNC
-Pad: U40 N PADNC
-Pad: U41 N PADNC
-Pad: U42 N PADNC
-Pad: U43 N PADNC
-Pad: U44 N PADNC
-Pad: U45 N PADNC
-Pad: U46 N PADNC
-Pad: U47 N PADNC
-Pad: U48 N PADNC
-Pad: U49 N PADNC
-Pad: U50 N PADNC
-Pad: U51 N PADNC
-Pad: U52 E PADNC
-Pad: U53 E PADNC
-Pad: U54 E PADNC
-Pad: U55 E PADNC
-Pad: U56 E PADNC
-Pad: U57 E PADNC
-Pad: U58 E PADNC
-Pad: U59 E PADNC
-Pad: U60 E PADNC
-Pad: U61 E PADNC
-Pad: U62 E PADNC
-Pad: U63 E PADNC
-Pad: U64 E PADNC
-Pad: U65 E PADNC
-Pad: U66 E PADNC
-Pad: U67 E PADNC
-Pad: U68 E PADNC
-Pad: U69 E PADNC
-Pad: U70 E PADNC
-Pad: U71 E PADNC
-Pad: U72 E PADNC
-Pad: U73 E PADNC
-Pad: U74 E PADNC
-Pad: U75 E PADNC
-Pad: U76 E PADNC
-Pad: U77 E PADNC
-Pad: U78 E PADNC
-Pad: U79 E PADNC
-Pad: U80 E PADNC
-Pad: U81 E PADNC
-Pad: U82 E PADNC
-Pad: U83 E PADNC
-Pad: U84 E PADNC
-Pad: U85 E PADNC
-Pad: U86 E PADNC
-Pad: U87 E PADNC
-Pad: U88 E PADNC
-Pad: U89 E PADNC
-Pad: U90 E PADNC
-Pad: U91 E PADNC
-Pad: U92 E PADNC
-Pad: U93 E PADNC
-Pad: U94 E PADNC
-Pad: U95 E PADNC
-Pad: U96 E PADNC
-Pad: U97 E PADNC
-Pad: U98 E PADNC
-Pad: U99 E PADNC
-Pad: U100 E PADNC
-Pad: U101 E PADNC
-Pad: U102 E PADNC
-Pad: U103 W PADNC
-Pad: U104 W PADNC
-Pad: U105 W PADNC
-Pad: U106 W PADNC
-Pad: U107 W PADNC
-Pad: U108 W PADNC
-Pad: U109 W PADNC
-Pad: U110 W PADNC
-Pad: U111 W PADNC
-Pad: U112 W PADNC
-Pad: U113 W PADNC
-Pad: U114 W PADNC
-Pad: U115 W PADNC
-Pad: U116 W PADNC
-Pad: U117 W PADNC
-Pad: U118 W PADNC
-Pad: U119 W PADNC
-Pad: U120 W PADNC
-Pad: U121 W PADNC
-Pad: U122 W PADNC
-Pad: U123 W PADNC
-Pad: U124 W PADNC
-Pad: U125 W PADNC
-Pad: U126 W PADNC
-Pad: U127 W PADNC
-Pad: U128 W PADNC
-Pad: U129 W PADNC
-Pad: U130 W PADNC
-Pad: U131 W PADNC
-Pad: U132 W PADNC
-Pad: U133 W PADNC
-Pad: U134 W PADNC
-Pad: U135 W PADNC
-Pad: U136 W PADNC
-Pad: U137 W PADNC
-Pad: U138 W PADNC
-Pad: U139 W PADNC
-Pad: U140 W PADNC
-Pad: U141 W PADNC
-Pad: U142 W PADNC
-Pad: U143 W PADNC
-Pad: U144 W PADNC
-Pad: U145 W PADNC
-Pad: U146 W PADNC
-Pad: U147 W PADNC
-Pad: U148 W PADNC
-Pad: U149 W PADNC
-Pad: U150 W PADNC
-Pad: U151 W PADNC
-Pad: U152 W PADNC
-Pad: U153 W PADNC
-Pad: U154 S PADNC
-Pad: U155 S PADNC
-Pad: U156 S PADNC
-Pad: U157 S PADNC
-Pad: U158 S PADNC
-Pad: U159 S PADNC
-Pad: U160 S PADNC
-Pad: U161 S PADNC
-Pad: U162 S PADNC
-Pad: U163 S PADNC
-Pad: U164 S PADNC
-Pad: U165 S PADNC
-Pad: U166 S PADNC
-Pad: U167 S PADNC
-Pad: U168 S PADNC
-Pad: U169 S PADNC
-Pad: U170 S PADNC
-Pad: U171 S PADNC
-Pad: U172 S PADNC
-Pad: U173 S PADNC
-Pad: U174 S PADNC
-Pad: U175 S PADNC
-Pad: U176 S PADNC
-Pad: U177 S PADNC
-Pad: U178 S PADNC
-Pad: U179 S PADNC
-Pad: U180 S PADNC
-Pad: U181 S PADNC
-Pad: U182 S PADNC
-Pad: U183 S PADNC
-Pad: U184 S PADNC
-Pad: U185 S PADNC
-Pad: U186 S PADNC
-Pad: U187 S PADNC
-Pad: U188 S PADNC
-Pad: U189 S PADNC
-Pad: U190 S PADNC
-Pad: U191 S PADNC
-Pad: U192 S PADNC
-Pad: U193 S PADNC
-Pad: U194 S PADNC
-Pad: U195 S PADNC
-Pad: U196 S PADNC
-Pad: U197 S PADNC
+Pad: U1 N 
+Pad: U2 N 
+Pad: U3 N 
+Pad: U4 N 
+Pad: U5 N 
+Pad: U6 N 
+Pad: U7 N 
+Pad: U8 N 
+Pad: U9 N 
+Pad: U10 N 
+Pad: U11 N 
+Pad: U12 N 
+Pad: U13 N 
+Pad: U14 N 
+Pad: U15 N 
+Pad: U16 N 
+Pad: U17 N 
+Pad: U18 N 
+Pad: U19 N 
+Pad: U20 N 
+Pad: U21 N 
+Pad: U22 N 
+Pad: U23 N 
+Pad: U24 N 
+Pad: U25 N 
+Pad: U26 N 
+Pad: U27 N 
+Pad: U28 N 
+Pad: U29 N 
+Pad: U30 N 
+Pad: U31 N 
+Pad: U32 N 
+Pad: U33 N 
+Pad: U34 N 
+Pad: U35 N 
+Pad: U36 N 
+Pad: U37 N 
+Pad: U38 N 
+Pad: U39 N 
+Pad: U40 N 
+Pad: U41 N 
+Pad: U42 N 
+Pad: U43 N 
+Pad: U44 N 
+Pad: U45 N 
+Pad: U46 N 
+Pad: U47 N 
+Pad: U48 N 
+Pad: U49 N 
+Pad: U50 N 
+Pad: U51 N 
+Pad: U52 E 
+Pad: U53 E 
+Pad: U54 E 
+Pad: U55 E 
+Pad: U56 E 
+Pad: U57 E 
+Pad: U58 E 
+Pad: U59 E 
+Pad: U60 E 
+Pad: U61 E 
+Pad: U62 E 
+Pad: U63 E 
+Pad: U64 E 
+Pad: U65 E 
+Pad: U66 E 
+Pad: U67 E 
+Pad: U68 E 
+Pad: U69 E 
+Pad: U70 E 
+Pad: U71 E 
+Pad: U72 E 
+Pad: U73 E 
+Pad: U74 E 
+Pad: U75 E 
+Pad: U76 E 
+Pad: U77 E 
+Pad: U78 E 
+Pad: U79 E 
+Pad: U80 E 
+Pad: U81 E 
+Pad: U82 E 
+Pad: U83 E 
+Pad: U84 E 
+Pad: U85 E 
+Pad: U86 E 
+Pad: U87 E 
+Pad: U88 E 
+Pad: U89 E 
+Pad: U90 E 
+Pad: U91 E 
+Pad: U92 E 
+Pad: U93 E 
+Pad: U94 E 
+Pad: U95 E 
+Pad: U96 E 
+Pad: U97 E 
+Pad: U98 E 
+Pad: U99 E 
+Pad: U100 E 
+Pad: U101 E 
+Pad: U102 E 
+Pad: U103 W 
+Pad: U104 W 
+Pad: U105 W 
+Pad: U106 W 
+Pad: U107 W 
+Pad: U108 W 
+Pad: U109 W 
+Pad: U110 W 
+Pad: U111 W 
+Pad: U112 W 
+Pad: U113 W 
+Pad: U114 W 
+Pad: U115 W 
+Pad: U116 W 
+Pad: U117 W 
+Pad: U118 W 
+Pad: U119 W 
+Pad: U120 W 
+Pad: U121 W 
+Pad: U122 W 
+Pad: U123 W 
+Pad: U124 W 
+Pad: U125 W 
+Pad: U126 W 
+Pad: U127 W 
+Pad: U128 W 
+Pad: U129 W 
+Pad: U130 W 
+Pad: U131 W 
+Pad: U132 W 
+Pad: U133 W 
+Pad: U134 W 
+Pad: U135 W 
+Pad: U136 W 
+Pad: U137 W 
+Pad: U138 W 
+Pad: U139 W 
+Pad: U140 W 
+Pad: U141 W 
+Pad: U142 W 
+Pad: U143 W 
+Pad: U144 W 
+Pad: U145 W 
+Pad: U146 W 
+Pad: U147 W 
+Pad: U148 W 
+Pad: U149 W 
+Pad: U150 W 
+Pad: U151 W 
+Pad: U152 W 
+Pad: U153 W 
+Pad: U154 S 
+Pad: U155 S 
+Pad: U156 S 
+Pad: U157 S 
+Pad: U158 S 
+Pad: U159 S 
+Pad: U160 S 
+Pad: U161 S 
+Pad: U162 S 
+Pad: U163 S 
+Pad: U164 S 
+Pad: U165 S 
+Pad: U166 S 
+Pad: U167 S 
+Pad: U168 S 
+Pad: U169 S 
+Pad: U170 S 
+Pad: U171 S 
+Pad: U172 S 
+Pad: U173 S 
+Pad: U174 S 
+Pad: U175 S 
+Pad: U176 S 
+Pad: U177 S 
+Pad: U178 S 
+Pad: U179 S 
+Pad: U180 S 
+Pad: U181 S 
+Pad: U182 S 
+Pad: U183 S 
+Pad: U184 S 
+Pad: U185 S 
+Pad: U186 S 
+Pad: U187 S 
+Pad: U188 S 
+Pad: U189 S 
+Pad: U190 S 
+Pad: U191 S 
+Pad: U192 S 
+Pad: U193 S 
+Pad: U194 S 
+Pad: U195 S 
+Pad: U196 S 
+Pad: U197 S 
 Pad: U198 S PADNC
 Pad: U199 S PADNC
 Pad: U200 S PADNC
